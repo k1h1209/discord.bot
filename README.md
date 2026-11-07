@@ -1,35 +1,28 @@
-# 디스코드 주식봇
+# 아테노스 서버 상태 봇
 
-`주식` 채널에 패널 메시지를 하나 만들고, 10초마다 그 메시지를 수정하면서 시세를 보여주는 가상 주식 게임 봇입니다.
-버튼으로 매수 / 매도 / 내 자산 / 용돈 / 랭킹을 사용합니다.
+마인크래프트(Aternos) 서버가 열려있는지 닫혀있는지 디스코드 채널의 메시지 하나로 보여주는 봇입니다.
+
+- 🟢 열려있음 (접속자 수 표시) / 🟡 켜지는 중 / 🔴 닫혀있음
+- 1분마다 서버를 확인하고 같은 메시지를 계속 수정합니다.
+- `bot.py`의 `EDIT_ONLY_ON_CHANGE`
+  - `True`: 상태가 바뀔 때만 수정
+  - `False`: 1분마다 항상 수정
 
 ## 실행 방법
 
-1. [Discord Developer Portal](https://discord.com/developers/applications)에서 봇을 만들고 토큰을 복사
-2. 봇을 서버에 초대 (scope: `bot`, 권한: 메시지 보내기, 임베드 링크, 채널 보기)
-3. 서버에 `주식` 이름의 텍스트 채널 만들기
-4. 설치 및 실행
+1. 디스코드 개발자 포털에서 봇을 만들고 서버에 초대합니다.
+2. `.env.example`을 `.env`로 복사한 뒤 값을 채웁니다.
+   - `DISCORD_TOKEN`: 봇 토큰
+   - `CHANNEL_ID`: 상태를 표시할 채널 ID
+   - `SERVER_HOST`, `SERVER_PORT`: 마인크래프트 서버 주소와 포트
+3. 설치 후 실행합니다.
 
 ```bash
 pip install -r requirements.txt
-cp .env.example .env   # DISCORD_TOKEN 채우기
 python bot.py
 ```
 
-## GitHub에 올리기
+## 주의
 
-```bash
-git init
-git add .
-git commit -m "디스코드 주식봇 첫 버전"
-git branch -M main
-git remote add origin https://github.com/<내아이디>/<저장소이름>.git
-git push -u origin main
-```
-
-`.env`와 `stock.db`는 `.gitignore`에 들어 있어 올라가지 않습니다. 토큰은 절대 커밋하지 마세요.
-
-## 구조
-
-- 종목은 `bot.py`의 `STOCKS`에서 수정 (가상 종목, 랜덤으로 변동)
-- 데이터는 `stock.db`(SQLite)에 저장되어 재시작해도 유지
+- `.env`(토큰)는 절대 GitHub에 올리지 마세요. `.gitignore`에 이미 들어 있습니다.
+- 봇이 계속 동작하려면 봇을 실행하는 컴퓨터(또는 호스팅)가 켜져 있어야 합니다.

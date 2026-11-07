@@ -1,4 +1,6 @@
 .env
-*.db
+message_id.json
 __pycache__/
+*.pyc
+venv/
 .venv/
