@@ -1,4 +1,6 @@
 .env
+config.json
+config.json.bak
 message_id.json
 __pycache__/
 *.pyc
